@@ -14,13 +14,3 @@ $database = "db"; // nama database yang digunakan.
 if (!$db) {
 	die("Gagal koneksi ke database : ".mysqli_connect_error());
 }
-
-/*
-
-NOTE :
-======
-Jika database tidak terkoneksi, maka akan tampil
-tulisan "Gagal koneksi ke database" beserta error-nya.
-Jika terkoneksi, maka tidak akan muncul tulisan apapun.
-
-*/
