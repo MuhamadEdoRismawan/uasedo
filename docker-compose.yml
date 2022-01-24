@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   php-apache-environment:
-    image: rika/kuis2
+    image: edo/kuis2
     container_name: php-apache
     depends_on:
       - db
@@ -18,12 +18,12 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: incgrup
+      MYSQL_DATABASE: db
     ports:
       - "3306:3306"
     volumes:
       - db:/var/lib/mysql
-      - ./incgrup.sql:/docker-entrypoint-initdb.d/incgrup.sql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
     networks:
       - backend
 
@@ -37,4 +37,3 @@ networks:
       driver: default
       config:
         - subnet: 172.20.0.0/24
-        
