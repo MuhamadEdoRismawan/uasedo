@@ -1,18 +1,7 @@
 version: '3.7'
 services:
   php-apache-environment:
-    image: edo/kuis2
-    container_name: php-apache
-    depends_on:
-      - db
-    volumes:
-      - ./:/var/www/html/
-    ports:
-      - 8000:80
-    networks:version: '3.7'
-services:
-  php-apache-environment:
-    image: edo/kuis2
+    image: rika/kuis2
     container_name: php-apache
     depends_on:
       - db
@@ -29,12 +18,12 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: db
+      MYSQL_DATABASE: incgrup
     ports:
       - "3306:3306"
     volumes:
       - db:/var/lib/mysql
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./incgrup.sql:/docker-entrypoint-initdb.d/incgrup.sql
     networks:
       - backend
 
@@ -48,30 +37,4 @@ networks:
       driver: default
       config:
         - subnet: 172.20.0.0/24
-      - backend
-
-  db:
-    container_name: db
-    image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: db
-    ports:
-      - "3306:3306"
-    volumes:
-      - db:/var/lib/mysql
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
-    networks:
-      - backend
-
-volumes:
-  db:
-
-networks:
-  backend:
-    name: backend-network
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.20.0.0/24
+        
